@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 import 'package:my_goals/main.dart';
 
+import '../../app/login/login_page.dart';
+
 class AuthGate extends StatelessWidget {
   const AuthGate({Key? key}) : super(key: key);
 
