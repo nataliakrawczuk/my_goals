@@ -13,6 +13,7 @@ class AddPageContent extends StatefulWidget {
 class _AddPageContentState extends State<AddPageContent> {
   var goalTitle = '';
   var goalContent = '';
+  var rating = 3.0;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -45,6 +46,18 @@ class _AddPageContentState extends State<AddPageContent> {
             },
           ),
         ),
+        Slider(
+          onChanged: (newValue) {
+            setState(() {
+              rating = newValue;
+            });
+          },
+          value: rating,
+          min: 1,
+          max: 5,
+          divisions: 4,
+          label: rating.toString(),
+        ),
         Padding(
           padding: const EdgeInsets.all(40.0),
           child: ElevatedButton(
@@ -52,7 +65,7 @@ class _AddPageContentState extends State<AddPageContent> {
               FirebaseFirestore.instance.collection('goals').add({
                 'title': goalTitle,
                 'goal': goalContent,
-                'rating': 3.0,
+                'rating': rating,
               });
             },
             child: const Text('Dodaj'),
