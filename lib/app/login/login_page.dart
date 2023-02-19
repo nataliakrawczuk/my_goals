@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../first_page/first_page.dart';
+
 class RootPage extends StatelessWidget {
   const RootPage({
     Key? key,
@@ -19,7 +21,9 @@ class RootPage extends StatelessWidget {
               ),
             );
           }
-          return const Scaffold();
+          return const FirstPage();
         });
   }
 }
+
+
