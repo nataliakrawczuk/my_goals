@@ -27,21 +27,30 @@ class GoalsPageContent extends StatelessWidget {
           return ListView(
             children: [
               for (final document in documents) ...[
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      Text(document['title']),
-                      Text(document['goal']),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Text(
-                            document['rating'].toString(),
-                          ),
-                        ],
-                      ),
-                    ],
+                Dismissible(
+                  key: ValueKey(document.id),
+                  onDismissed: (_) {
+                    FirebaseFirestore.instance
+                        .collection('goals')
+                        .doc(document.id)
+                        .delete();
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        Text(document['title']),
+                        Text(document['goal']),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Text(
+                              document['rating'].toString(),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
