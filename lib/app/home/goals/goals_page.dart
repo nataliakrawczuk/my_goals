@@ -9,7 +9,10 @@ class GoalsPageContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
-        stream: FirebaseFirestore.instance.collection('goals').snapshots(),
+        stream: FirebaseFirestore.instance
+            .collection('goals')
+            .orderBy('rating', descending: true)
+            .snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
             return const Center(
