@@ -40,7 +40,11 @@ class _FirstPageState extends State<FirstPage> {
           return const GoalsPageContent();
         }
         if (currentIndex == 1) {
-          return const AddPageContent();
+          return AddPageContent(onSave: () {
+            setState(() {
+              currentIndex = 0;
+            });
+          });
         }
         if (currentIndex == 2) {
           return const DonePageContent();
@@ -64,6 +68,3 @@ class _FirstPageState extends State<FirstPage> {
     );
   }
 }
-
-
-

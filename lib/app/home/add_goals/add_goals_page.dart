@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class AddPageContent extends StatefulWidget {
   const AddPageContent({
     Key? key,
+    required this.onSave,
   }) : super(key: key);
+
+  final Function onSave;
 
   @override
   State<AddPageContent> createState() => _AddPageContentState();
@@ -61,13 +64,16 @@ class _AddPageContentState extends State<AddPageContent> {
         Padding(
           padding: const EdgeInsets.all(40.0),
           child: ElevatedButton(
-            onPressed: () {
-              FirebaseFirestore.instance.collection('goals').add({
-                'title': goalTitle,
-                'goal': goalContent,
-                'rating': rating,
-              });
-            },
+            onPressed: goalTitle.isEmpty || goalContent.isEmpty
+                ? null
+                : () {
+                    FirebaseFirestore.instance.collection('goals').add({
+                      'title': goalTitle,
+                      'goal': goalContent,
+                      'rating': rating,
+                    });
+                    widget.onSave();
+                  },
             child: const Text('Dodaj'),
           ),
         ),
