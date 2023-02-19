@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:my_goals/features/pages/user_profile.dart';
+
+import '../home/add_goals/add_goals_page.dart';
+import '../home/done_goals/done_goals_page.dart';
+import '../home/goals/goals_page.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({
@@ -32,13 +37,13 @@ class _FirstPageState extends State<FirstPage> {
       ),
       body: Builder(builder: (context) {
         if (currentIndex == 0) {
-          return const Center(child: Text('Jeden'));
+          return const GoalsPageContent();
         }
         if (currentIndex == 1) {
-          return const Center(child: Text('dwa'));
+          return const AddPageContent();
         }
         if (currentIndex == 2) {
-          return const Center(child: Text('trzy'));
+          return const DonePageContent();
         }
         return const Center(child: Text('Jeden'));
       }),
@@ -59,3 +64,6 @@ class _FirstPageState extends State<FirstPage> {
     );
   }
 }
+
+
+
